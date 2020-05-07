@@ -1,0 +1,341 @@
+\documentclass[10pt, a4paper, oneside]{memoir}
+%%%%%
+\DisemulatePackage{tabularx} % This is needed as memoir, bidi (for bidirectional text e.g., Arabic/Persian), polyglossia, and hyperref have a conflict. This solution works.
+\usepackage{tabularx}
+\usepackage{xltabular} %For tabularx across multiple pages  
+%%%%%
+
+\usepackage[all]{nowidow}
+\usepackage[no-math]{fontspec}
+\usepackage[dvipsnames]{xcolor}
+
+
+\usepackage[hang,flushmargin, bottom, multiple]{footmisc}
+\setlength{\footnotesep}{\baselineskip}% Keeping the footnote mark and text properly aligned, especially for longer paragraph-style footnotes
+\makeatletter
+\renewcommand\@makefntext[1]{\leftskip=0em\hskip0em\@makefnmark#1}
+\makeatother
+\setlength{\footparindent}{2em}
+
+%Wrapping footnote numbers around edited text for Persian critical edition
+\makeatletter
+\newcommand{\wrapfootnote}[1]{\stepcounter\@mpfn%
+% marks in the text
+\protected@xdef\@thefnmark{\thempfn}%
+\@footnotemark$^-$#1$^-$\@footnotemark%
+% marks at bottom
+\protected@xdef\@thefnmark{\thempfn\thinspace---\thinspace\thempfn}%
+\@footnotetext}
+\makeatother
+
+
+\usepackage{ragged2e}
+\usepackage{marginnote}
+\usepackage{rotating} % For sideways figures
+\usepackage{subcaption} % For subfigures
+\usepackage{sidecap} % For captions on the side of figures
+\usepackage{cancel}% For using \cancel{} command in the critical apparatus
+\usepackage[shortlabels]{enumitem}
+\usepackage{xpatch}
+\usepackage{array, multicol, paracol, multirow} % For multiple columns to be merged in table environment. 
+%paracol helps multicol-like layout across page breaks automatically without messing with the text across columns. 
+\newcolumntype{C}[1]{>{\centering\arraybackslash}X}
+
+\usepackage{booktabs}
+% \usepackage{amsmath}
+\usepackage{amscd, amsmath, amssymb, amsthm, yhmath, MnSymbol} % American Mathematical Society packages for metamathematical symbols.
+% \usepackage{xfrac} % For \sfrac in math mode (in line with text))
+\usepackage{marvosym, wasysym} % For Astronomical symbols
+% \allowdisplaybreaks % for automatically splitting equations in align environment across pages
+\usepackage{fourier-orns} % Decorative florets
+% \newcommand{\decolinebreak}{\plainbreak{1}\fancybreak{\floweroneleft\floweroneright}\plainbreak{1}}
+\usepackage{makecell} % For using \makecell{ \\ } in the tabular environment to case line breaks in a cell
+\usepackage{wrapfig} % For wrapping figure
+\usepackage{pst-3dplot, multido, pst-intersect, pst-tools, pst-poly} % PSTricks images
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{polyglossia}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[Ligatures={Common}, Numbers=OldStyle]{Linux Libertine O}
+\setdefaultlanguage{english}
+\setotherlanguage{sanskrit}
+\setotherlanguage{hindi}
+\setotherlanguage{latin}
+
+\newfontfamily\critfont{Linux Libertine O}
+\newfontfamily\sanskritfont[Script=Devanagari, Scale=1]{Shobhika-Regular}
+\newfontfamily\latinfont[Script=Latin, Scale=1]{Linux Libertine O}
+\newfontfamily\greekfont[Script=Greek, Mapping = tex-text]{Linux Libertine O}
+\newfontfamily\metersymbol[Path=Fonts/]{new_athena_unicode.ttf}% Font supporting metrical short and long symbols for scansion (UNICODE), and dotted circle for diacritics
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+\newfontfamily\hindifont[Script=Devanagari,Mapping=velthuis-sanskrit,Scale=1]{Shobhika-Regular} % for typing (using velthuis) Sanskrit text in critical apparatus 
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+% Font declaration for displaying only Sanskrit vowel-signs (matras), especially for critical apparatus when certain vowel signs need to be crossed out without affecting the consonant. The Shobhika font (along with a direct Unicode declaration of the ligature and ``Script=Devanagari'' turned OFF) helps produce the dependent vowel-mark WITHOUT the dotted circle.
+\newfontfamily\sanskritfontvowel [Mapping=velthuis-sanskrit, Scale=1]{Shobhika-Regular}
+\newcommand{\tsv}[1]{\sanskritfontvowel{#1}} 
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%Alternative formulation for when using Velthuis scheme for Sanskrit Devanagari within the thesis, except for Critical edition--   %
+% Make the tilde into a normal letter of the alphabet %
+\def\maketildeletter{\catcode`\~=11}
+\def\dev{\maketildeletter \texthindi}
+% The usage for this prescription is "{{\dev{j~n\={a}na}}" --  notice the double braces and "\dev{}'' taking the argument to be typeset
+%NOTE: This does not seem to work for the lemma or variant. Within the \Lemma{} or \Variant{} environments, just type in devanagari in \tsans{}. e.g, \Lemma{@\tsans{नाञ्जा}@}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+\newcommand{\ts}[1]{\textsanskrit{\bfseries #1}} % Sanskrit in Devanagari (in bold)
+\newcommand{\tsnb}[1]{\textsanskrit{#1}} % Sanskrit in Devanagari (not bold)
+\newcommand{\tms}[1]{{\small \textsanskrit{#1}}} % Sanskrit in Devanagari in the margin
+\newcommand{\rs}[1]{\textit{\textlatin{#1}}} % Sanskrit (transliterated) in Latin
+\newcommand{\rms}[1]{\small \textit{\textenglish{#1}}} % Sanskrit (transliterated) in Latin in the margin
+\newcommand{\msf}[1]{\metersymbol{#1}} % For short (23D1), long (2013), and short-over-long (23D3) metrical symbols, and dotted circle for diacritics
+\newcommand{\te}[1]{\textenglish{#1}} % Text in English
+\newcommand{\tsans}[1]{\texthindi{#1}} % Text in Ordinary Sanskrit (typed in velthuis)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sanskrit and Persian words
+\include{sanskrit_persian_words}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Commands for latin words with non-sentence breaking punctuation
+\newcommand{\vid}{see}
+\newcommand{\Vid}{See}
+\newcommand{\ie}{i.e.\@ }
+\newcommand{\eg}{e.g.\@ }
+\newcommand{\fl}{\emph{fl}.\@ }
+\newcommand{\viz}{\emph{viz}.\@ }
+\newcommand{\scl}{\textit{sc}.\@ }
+\newcommand{\etc}{etc.\@ } 
+\newcommand{\etcp}{etc.} 
+\newcommand{\cf}{\emph{cf}.\@ }
+\newcommand{\Cf}{\emph{Cf}.\@ }
+\newcommand{\ce}{\textsc{ce}}
+\newcommand{\bce}{\textsc{bce}}
+\newcommand{\ah}{\textsc{ah}} % Anno Hegirae (Hijri date)
+\newcommand{\circa}{\emph{c}.\thinspace\nobreak }
+\newcommand{\ante}{\emph{ante}}
+\newcommand{\post}{\emph{post}}
+\newcommand{\lit}{\emph{lit}.\@ }
+\newcommand{\Ibid}{Ibid.\@ }
+\newcommand{\opcit}{\textit{op.\thinspace cit.\@ }}
+\newcommand{\sic}{\textit{sic}}
+\newcommand{\alias}{\textit{alias}}
+
+
+
+% MSS Sigla
+\newcommand{\SjA}{Sj\kern0.15ex\textsubscript{A}}
+\newcommand{\SjB}{Sj\kern0.15ex\textsubscript{B}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+
+\usepackage[autostyle]{csquotes}
+\usepackage[backend=biber, style=ext-authoryear-icomp, uniquename=false, natbib=true, language=autobib, autolang=langname, ibidtracker=false, doi=true]{biblatex} % You can change the style as per your requirement as given in the biblatex manual
+% backref=true option produces "(cit. on p./pp. #)." at the end of the entries. Use if needed. 
+
+% \DeclareOuterCiteDelims{parencite}{\bibopenbracket}{\bibclosebracket} % Using square brackets with parencite 
+
+\addbibresource{bibliography.bib} % Place the .bib file in your project directory
+\setlength\bibitemsep{0.5\baselineskip} % Sets the space between bibliography entries
+\DeclareBibliographyAlias{webpage}{online}  % For the error ``No driver for entry type 'webpage'.''
+\DeclareBibliographyAlias{url}{online}  % For the error ``No driver for entry type 'url'.''
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Extra trimmings
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.75em}
+% Ligature for fancy Ampersand
+\chardef\&="E050
+\newcommand{\degree}{\text{°}} % Degree symbol Unicode
+\newcommand{\signederenvoi}{$\wedge\kern-.4ex\wedge$} % interlinear correction mark (Persian ms SjA)
+\hbadness=99999
+
+% For redefining \wideparen{} for arcs in mathmode (needs yhmath packge)
+\DeclareFontFamily{OMX}{yhex}{}
+\DeclareFontShape{OMX}{yhex}{m}{n}{<->yhcmex10}{}
+\DeclareSymbolFont{yhlargesymbols}{OMX}{yhex}{m}{n}
+\DeclareMathAccent{\wideparen}{\mathord}{yhlargesymbols}{"F3}
+
+\renewcommand\labelitemi{--} % Using dashes instead of bullets in itemized lists
+\usepackage[all]{nowidow}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[bookmarksopen=true, bookmarksdepth=4, hyperfootnotes=true, plainpages=false, bookmarks, bookmarksnumbered, colorlinks, linktocpage=true, linkcolor=blue, citecolor=blue, filecolor=black, urlcolor=blue]{hyperref}
+\usepackage{bookmark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossary (LOAD AFTER HYPERREF FOR HYPERLINKED ENTRIES BUT BEFORE THE POLYGLOSSIA PERSIAN)
+\usepackage[automake, xindy, acronym, stylemods, entrycounter, subentrycounter=true,numberedsection=nameref]{glossaries-extra} % For glossary
+
+% entrycounter puts a counter on all parent entries in the glossary. An entries number can then be referenced by \glsrefentry{"label"}--- not used here, but good to note.
+
+ \renewcommand*{\glsentrycounterlabel}{} % Used with option entrycounter to prevent numbered glossary from showing up, but the pagenumber of a glossary enrty can then be referenced using \pageref{glsentry-"label"} e.g., \pageref{glsentry-distance}
+\usepackage{glossary-mcols} % For multicolumn (abbreviations)
+\usepackage{glossary-tree}
+\makeglossaries
+\include{glossary}
+\include{acronym}
+\renewcommand{\glsnamefont}[1]{\textbf{#1}}
+\renewcommand*{\glstextformat}[1]{\textbf{#1}}
+
+
+\renewcommand*{\glssubentrycounterlabel}{$\hookrightarrow$\space} % Allows the symbol (hooked right arrow) for dependent/similar entries in to appear when using index-style glossary 
+% \let\glsalias\glsuseri
+\glsaddall[types={main}] % Adds all main (glossary_shortened) entries but not all acronyms (only those acronyms used in the text are added)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% This is a part of polyglossia but as it text written in the reverse direction, it needs to be loaded after hyperref else there are conflicts
+
+\setotherlanguage[numerals=eastern]{persian}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+\newfontfamily\persianfont[Path=Fonts/,Script=Arabic,Scale=1.1,WordSpace=2]{XB_Niloofar.ttf}% For typing Persian
+\newcommand{\tfarsi}[1]{\textpersian{#1}} % Text in Farsi/Persian
+
+\newfontfamily\persianbold[Path=Fonts/,Script=Arabic,Scale=1.1,WordSpace=2]{XB_NiloofarBd.ttf}% For typing Persian (Bold)
+\newcommand{\tfarsib}[1]{{\persianbold{#1}}} % Text in Farsi/Persian Bold
+
+\newfontfamily\persiannastlq[Path=Fonts/,Script=Arabic,Scale=1.1,WordSpace=2, Contextuals=Swash]{IranNastaliq.ttf}%
+% For Persian Nasta'līq font
+\newcommand{\tfarsinastlq}[1]{{\persiannastlq{#1}}} 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%For preventing line break at hyphen used in Romanised Arabic & Sanskrit words (Used in sanskrit_persian_words.tex
+\usepackage[shortcuts]{extdash} % Load last, it freaks out when other things follow it.
+\pdfstringdefDisableCommands{\def\-{-}} % Fixes the "\EXD@break" hyperref warnings from popping up
+% Standard LaTeX dashes
+% - Standard LaTeX hyphen
+
+% extdash breakable dashes
+% Words hyphened with these dashes can also be broken at other positions than the dash, i.e., in the pre word and the post word
+% \-/ hyphen
+
+
+% extdash unbreakable dashes
+% No line breaks possible at the hyphen, i.e., only breaks in the post word allowed, no pre-hyphen word break allowed: Use \=/ for words like al\=/Birūnī which prevents an orphan "al-" at the end of the line
+% \=/ hyphen
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+
+\addtocounter{secnumdepth}{2} % For numbered subsections 
+\setcounter{tocdepth}{2}
+\usepackage{chngcntr}
+\counterwithout{figure}{subsection}
+\counterwithout{table}{subsection}
+\counterwithout{section}{chapter} % Resets section numbering to 1, 2, etc.
+\hangsecnum
+
+
+\title{Persian Astronomy in Sanskrit\\[5pt]
+\MullaFarid's \ZijiShahJahani, Discourse II, Chapter VI (1628 \ce) and its translation in \Nityananda's \Siddhantasindhu\ (\circa early 1630 \ce)}
+\author{Anuj Misra\\[10pt]
+
+{\small Department of Cross-Cultural and Regional Studies,}\\{\small University of Copenhagen, Denmark.}\\{\small \url{anuj.misra@hum.ku.dk}}}
+\date{}
+
+\OnehalfSpacing
+\setaftersecskip{\baselineskip}% For slightly increased space after section title 
+\pagestyle{plain}
+
+\begin{document}
+\sloppy
+\sloppybottom
+\thispagestyle{empty}
+% Front matter 
+
+\maketitle
+\bigskip
+
+\begin{abstract}
+Sanskrit version of Persian astronomy
+\end{abstract}
+\vfill
+ \paragraph{Keywords} Sanskrit astronomy, \ganita\ \jyotisa, true declination, science in Mughal India, \Nityananda, \MullaFarid,, \Sarvasiddhantaraja, \Siddhantasindhu, \ZijiShahJahani, \ZijUlughBeg. 
+ \vfill
+\clearpage
+\tableofcontents*
+\clearpage
+
+% Main matter 
+\section{Introduction}\label{introduction}
+\input{introduction.tex}
+ \clearpage
+
+\section{The Sanskrit translation of a Persian \zij} \label{sanskrit_translation_of_persian_zij}
+\input{sanskrit_translation_persian_zij}
+\clearpage
+
+\section{Editorial Notes}\label{editoial_notes}
+\input{editorial_notes}
+\clearpage
+
+\section[Chapter-titles from the \ZijiShahJahani, Discourse~II and the\linebreak \Siddhantasindhu, Part~II: text and translation]{Chapter-titles from Discourse II (\maqala\idafaconsonant\ \duvum) of the \ZijiShahJahani\ and Part II (\dvitiya\ \kanda) of the \Siddhantasindhu}\label{chapter_title_comparision_persian_sanskrit}
+\input{comparision_chapter_titles.tex}
+\clearpage
+
+\section{\ZijiShahJahani, Discourse II.6: text and translation}
+\label{zijshahjahan_persian_english}
+\input{zij_i_shahjahani_II_vi_persian_text_translation}
+\clearpage
+% \input{persian_text.tex}
+% \clearpage
+% \input{persian_english_trans.tex}
+% \clearpage
+
+\section{\Siddhantasindhu, Part II.6: text and translation}
+\label{siddhantasindhu_sanskrit_english}
+\input{siddhantasindhu_II_vi_sanskrit_text_translation}
+\clearpage
+% \input{sanskrit_text.tex}
+% \clearpage
+% \input{sanskrit_english_trans.tex}
+
+
+%Back Matter
+% \renewcommand{\thefootnote}{A\textsubscript{\arabic{footnote}}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+\setlength{\footnotesep}{\onelineskip} % for space between footnotes
+
+% Apendices
+\include{appendix}
+\clearpage
+
+
+
+\printglossary[type=\acronymtype, style= mcolindex, title={List of Grammatical Abbreviations}, nonumberlist]
+\clearpage
+
+%~~~~~~~~~~~~~~~~~~~~%
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+\setlength{\footnotesep}{0.6\baselineskip} % for space between footnotes
+% (The tabular line separation in the glossary also uses \\[0.6\baselineskip])
+
+
+\renewcommand*\glspostdescription{\vspace{\glueexpr0.4\baselineskip}} % Sets the spacing between entries, otherwise the index-style glossary is really compressed. 
+
+\renewcommand\glstreepredesc{\quad} % space between name and description for item
+\renewcommand{\glstreechildpredesc}{\quad} % space between name and description for subsequent subitem, subsubitem, etc
+
+\renewcommand{\glstreeitem}{\parindent0pt\par\hangindent0em  
+ \everypar{\parindent0pt\hangindent2em}}% Sets the indentation of the description paragraph (item) for the first line of item being \quad separated, and further for the the second line.
+ 
+\renewcommand{\glstreesubitem}{\parindent1em\par\hangindent1em  
+ \everypar{\parindent1em\hangindent4em}}% Sets the indentation of the description paragraph (subitem) for the first line of subitem being \quad separated from item, and accordingly for the the second line.
+ 
+\printglossary[style=index, nonumberlist]
+\clearpage
+%~~~~~~~~~~~~~~~~~~~~%
+
+\printbibliography
+\end{document}
