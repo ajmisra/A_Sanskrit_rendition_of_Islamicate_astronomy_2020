@@ -249,18 +249,22 @@
 \begin{document}
 \sloppy
 \sloppybottom
-\thispagestyle{empty}
-% Front matter 
-
 \maketitle
-\bigskip
+\thispagestyle{empty}
+\vfill
+This study is a part of my research project on `Early Modern Exchanges in Sanskrit Astral Sciences' (EMESAS). This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement \textnumero\ 836055. 
+\clearpage
+
+
+\thispagestyle{empty}
 
 \begin{abstract}
-Sanskrit version of Persian astronomy
+Starting from the late medieval period of Indian history, Islamicate and Sanskrit astral sciences exchanged ideas and innovations that were facilitated by the power struggles of language, culture, and identity. The practice of translation played a vital role in transporting science across the physical and mental realms of an ever-changing society. The present study begins by looking at the culture of translating astronomy in late-medieval and early-modern India. The historical context allows it to then examine the language with which a seventeenth-century Hindu astronomer called \Nityananda\ translated into Sanskrit a Persian astronomical text of his Muslim colleague \MullaFarid. \Nityananda's Sanskrit composition is an example of how innovation and tradition express themselves in the language of science. 
+
+This work includes a comparative description of the contents in the second discourse of \MullaFarid's \ZijiShahJahani\ (\circa 1629/30) and the second part of \Nityananda's \Siddhantasindhu\ (\circa early 1630s), along with a critical examination of the sixth chapter from both these works. The original text in Persian and Sanskrit is edited for the very first time and accompanied by their English translations. The focus of this study is to highlight the linguistics (syntactic, semantic, and communicative) aspects in \Nityananda's Sanskrit translation of \MullaFarid's Persian text. The mathematics of the chapter is discussed in a forthcoming publication. An indexed glossary of technical terms from the edited Persian and Sanskrit text is appended at the end of the work.
 \end{abstract}
 \vfill
- \paragraph{Keywords} Sanskrit astronomy, \ganita\ \jyotisa, true declination, science in Mughal India, \Nityananda, \MullaFarid,, \Sarvasiddhantaraja, \Siddhantasindhu, \ZijiShahJahani, \ZijUlughBeg. 
- \vfill
+ \paragraph{Keywords} Sanskrit astral sciences, Persian astronomy, true declination, science in Mughal India, culture of translating science, \ganita\ \jyotisa, \Nityananda, \MullaFarid, \Sarvasiddhantaraja, \Siddhantasindhu, \ZijiShahJahani, \ZijUlughBeg. 
 \clearpage
 \tableofcontents*
 \clearpage
@@ -305,17 +309,24 @@ Sanskrit version of Persian astronomy
 \renewcommand{\thefootnote}{\arabic{footnote}}
 \setcounter{footnote}{0}
 \setlength{\footnotesep}{\onelineskip} % for space between footnotes
+%~~~~~~~~~~~~~~~~~~~~%
+\include{acknowledgement}
+\clearpage
+
+\printbibliography
+\clearpage
+%~~~~~~~~~~~~~~~~~~~~%
 
 % Apendices
 \include{appendix}
 \clearpage
 
-
-
+% List of Grammatical Abbreviations
 \printglossary[type=\acronymtype, style= mcolindex, title={List of Grammatical Abbreviations}, nonumberlist]
 \clearpage
 
 %~~~~~~~~~~~~~~~~~~~~%
+% Glossary
 \renewcommand{\thefootnote}{\arabic{footnote}}
 \setcounter{footnote}{0}
 \setlength{\footnotesep}{0.6\baselineskip} % for space between footnotes
@@ -334,8 +345,5 @@ Sanskrit version of Persian astronomy
  \everypar{\parindent1em\hangindent4em}}% Sets the indentation of the description paragraph (subitem) for the first line of subitem being \quad separated from item, and accordingly for the the second line.
  
 \printglossary[style=index, nonumberlist]
-\clearpage
 %~~~~~~~~~~~~~~~~~~~~%
-
-\printbibliography
 \end{document}

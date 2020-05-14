@@ -13,7 +13,7 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
 
 \newglossaryentry{distance_ce_true_declination}
 {
-        name={distance from the celestial equator---},
+        name={distance from the celestial equator or true declination---},
         description={\phantom{x}\nopagebreak}
 }
 
@@ -75,7 +75,7 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
 {
         name={celestial object},
         description={\tfarsi{کوکب} (\kawkab), pl.\thinspace \tfarsi{كواكب} (\kawakib)   \hyperlink{Pii13}{II.13}, \hyperlink{Pii22}{22}, [\hyperlink{PEpass3}{3}, \hyperlink{PEpass4}{4}, \hyperlink{PEpass5}{5}];
-       \tsans{graha} (\textit{graha}) \hyperlink{Sii7}{II.7}, \tsans{nak.satra} (\textit{nakṣatra}) \hyperlink{Sii12}{II.12}, \hyperlink{Sii13}{13}, \tsans{khaga} (\textit{khaga}) \hyperlink{Sii22}{II.22}, \tsans{nabhoga} (\textit{nabhoga}) [\hyperlink{SEpassA}{α}, \hyperlink{SEpassD}{δ}], \tsans{dyucara} (\textit{dyucara}) [\hyperlink{SEpassB}{β}], \tsans{bha} (\textit{bha}) [\hyperlink{SEpassD}{δ}]},
+       \tsans{graha} (\textit{graha}) \hyperlink{Sii7}{II.7}, \tsans{nak.satra} (\textit{nakṣatra}) \hyperlink{Sii12}{II.12}, \hyperlink{Sii13}{13}, \tsans{khaga} (\textit{khaga}) \hyperlink{Sii22}{II.22}, [\hyperlink{SEpass1}{1}, \hyperlink{SEpass5}{5}, \hyperlink{SEpass7}{7}, \hyperlink{SEpass8}{8}] \tsans{nabhoga} (\textit{nabhoga}) [\hyperlink{SEpassA}{α}, \hyperlink{SEpassD}{δ}, \hyperlink{SEpass9}{9}], \tsans{dyucara} (\textit{dyucara}) [\hyperlink{SEpassB}{β}], \tsans{bha} (\textit{bha}) [\hyperlink{SEpassD}{δ}]},
         plural={celestial objects}
 }
 
@@ -210,7 +210,7 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
 \newglossaryentry{share_true_declination}
 {
         name={share of the true declination},
-        description={\tsans{sphu.ta-apama-a.m"sa} (\textit{sphuṭa- apama-aṃśa}) [\hyperlink{SEpass1}{1}]},
+        description={\tsans{sphu.ta-apama-a.m"sa} (\textit{sphuṭa-apama-aṃśa}) [\hyperlink{SEpass1}{1}]},
         parent={argument_of_distance}
 }
 
@@ -300,9 +300,9 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
         parent={Sine_arg_dist}
 }
 
-\newglossaryentry{sine_declination}
+\newglossaryentry{sine_true_declination}
 {
-        name={Sine of the declination---},
+        name={Sine of the true declination---},
         description={\phantom{x}\nopagebreak}
 }
 
@@ -310,14 +310,14 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
 {
         name={Sine of the distance},
         description={\tfarsi{جيب بعد} (\jayb\idafaconsonant\ \bud) [\hyperlink{PEpass2}{2}, \hyperlink{PEpass3}{3}, \hyperlink{PEpass4}{4}, \hyperlink{PEpass6}{6}],},
-        parent={sine_declination}
+        parent={sine_true_declination}
 }
 
 \newglossaryentry{Sine_distance_celestial_object}
 {
         name={Sine of the distance of the celestial object},
         description={\tfarsi{جيب بعد کوکب} (\jayb\idafaconsonant\ \bud\idafaconsonant\ \kawkab) [\hyperlink{PEpass11}{11}],},
-        parent={sine_declination}
+        parent={sine_true_declination}
 }
 
 \newglossaryentry{Sine_true_declination}
@@ -326,7 +326,7 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
         description={\tsans{sphu.ta-apama-jyakaa} (\textit{sphuṭa-apama-jyakā}) [\hyperlink{SEpass2}{2}], 
                     \tsans{spa.s.ta-apama-jyakaa} (\textit{spaṣṭa-apama-jyakā}) [\hyperlink{SEpass3}{3}], 
                     \tsans{spa.s.ta-kraanti-jyaa} (\textit{spaṣṭa-krānti-jyā}) [\hyperlink{SEpass4}{4}, \hyperlink{SEpass6}{6}]},
-        parent={sine_declination}
+        parent={sine_true_declination}
 }
 
 \newglossaryentry{Cosine_maximum_declination}
@@ -388,10 +388,24 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
          \textbf{to/must be multiplied}\quad \tsans{sa.mgu.nya} (\textit{saṃguṇya}) [\hyperlink{SEpass6}{6}]}
 }
 
-\newglossaryentry{maximum_declination}
+\newglossaryentry{maximum_declination_parent}
 {
-        name={maximum declination},
-        description={\tfarsi{میل کلّی} (\mayl\idafaconsonant\ \kulli) [\hyperlink{PEpass7}{7}, \hyperlink{PEpass10}{10}]; \tsans{parama-kraanti} (\textit{parama-krānti}) [\hyperlink{SEpass7}{7}], \tsans{parama-apama} (\textit{parama-apama}) [\hyperlink{SEpass10}{10}]}
+        name={obliquity of the ecliptic---},
+        description={\phantom{x}\nopagebreak}
+}
+
+\newglossaryentry{total_declination}
+{       
+        name={total declination},
+        description={\tfarsi{میل کلّی} (\mayl\idafaconsonant\ \kulli) [\hyperlink{PEpass7}{7}, \hyperlink{PEpass10}{10}]},
+        parent={maximum_declination_parent}
+}
+
+\newglossaryentry{greatest_declination}
+{
+        name={greatest declination},
+        description={\tsans{parama-kraanti} (\textit{parama-krānti}) [\hyperlink{SEpass7}{7}], \tsans{parama-apama} (\textit{parama-apama}) [\hyperlink{SEpass10}{10}]},
+        parent={maximum_declination_parent}
 }        
         
 \newglossaryentry{division}
@@ -962,21 +976,19 @@ This glossary lists Persian and Sanskrit technical expressions from (i) the chap
         description={\phantom{x}\nopagebreak}
 }
 
-% UNATTESTED
-% \newglossaryentry{distance_celestial_object_solstice}
-% {
-%         name={distance of a celestial object from the `circle passing through the four poles'},
-%         description={\newline\tfarsi{بعد کوکب از
-%         \tfarsib{دایرهٔ ماره باقطاب اربعه}} (\textit{\bud\idafaconsonant\ \kawkab\ \az\ \guillemotleft\dayiri\idafavowel\ \marri\ \biaqtab\idafaconsonant\ \arbai\guillemotright})},
-%         parent={distance_solstitial_colure}
-% }
+
+\newglossaryentry{distance_celestial_object_solstice}
+{
+        name={distance of a celestial object from the `circle passing through the four poles'},
+        description={\newline\tfarsi{بعد کوکب از
+        \tfarsib{دایرهٔ ماره باقطاب اربعه}} (\textit{\bud\idafaconsonant\ \kawkab\ \az\ \guillemotleft\dayiri\idafavowel\ \marri\ \biaqtab\idafaconsonant\ \arbai\guillemotright}) [\hyperlink{PEpass8}{8}, \hyperlink{PEpass9}{9}, \hyperlink{PEpass11}{11}]},
+        parent={distance_solstitial_colure}
+}
 
 \newglossaryentry{congruent_koti}
 {
         name={congruent complementary arc},
-        description={\tsans{sad.r"s-ko.ti} (\textit{sadṛś-koṭi}) [\hyperlink{SEpassD}{δ}]\newline
-        identified with the \tfarsi{بعد کوکب از
-        \tfarsib{دایرهٔ ماره باقطاب اربعه}} (\textit{\bud\idafaconsonant\ \kawkab\ \az\ \guillemotleft\dayiri\idafavowel\ \marri\ \biaqtab\idafaconsonant\ \arbai\guillemotright}) `distance of a celestial object from the ``circle passing through the four poles"'},
+        description={\tsans{sad.r"s-ko.ti} (\textit{sadṛś-koṭi}) [\hyperlink{SEpassD}{δ}]},
         parent={distance_solstitial_colure}
 }
 
